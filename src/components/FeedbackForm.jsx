@@ -4,10 +4,21 @@ import Button from './shared/Button';
 
 function FeedbackForm() {
 	const [text, setText] = useState('');
-	const [btnDisabled, setbtnDisabled] = useState(true);
+	const [btnDisabled, setBtnDisabled] = useState(true);
 	const [message, setMessage] = useState('');
 
 	const handleTextChange = (e) => {
+		if(text === '') {
+			setBtnDisabled(true);
+			setMessage(null);
+		} else if(text !== '' && text.trim().length <= 10) {
+			setBtnDisabled(true);
+			setMessage('Text must be at least 10 characters.');			
+		} else {
+			setMessage(null);
+			setBtnDisabled(false);
+		}
+
 		setText(e.target.value);
 	}
 
