@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FeedbackItem from './FeedbackItem';
+import Spinner from './shared/Spinner';
 import FeedbackContext from '../context/FeedbackContext';
 
 function FeedbackList() {
@@ -11,7 +12,7 @@ function FeedbackList() {
 	}
 
 	// with loading spinner
-	return isLoading ? <h3>Loading...</h3> : (
+	return isLoading ? <Spinner /> : (
 		// WITH fade-in/fade-out animation
 		<div className='feedback-list'>
 		<AnimatePresence>
