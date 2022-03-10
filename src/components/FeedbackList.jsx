@@ -4,14 +4,15 @@ import FeedbackItem from './FeedbackItem';
 import FeedbackContext from '../context/FeedbackContext';
 
 function FeedbackList() {
-	const {feedback} = useContext(FeedbackContext);
+	const { feedback, isLoading } = useContext(FeedbackContext);
 
-	if(!feedback || feedback.length === 0) {
+	if(!isLoading && (!feedback || feedback.length === 0)) {
 		return <p>No Feedback Yet</p>
 	}
 
-// WITH fade-in/fade-out animation
-	return (
+	// with loading spinner
+	return isLoading ? <h3>Loading...</h3> : (
+		// WITH fade-in/fade-out animation
 		<div className='feedback-list'>
 		<AnimatePresence>
 				{feedback.map((item) => (
@@ -26,8 +27,9 @@ function FeedbackList() {
 				))}
 			</AnimatePresence>
 		</div>
-		);
+	)
 
+	
 // WITHOUT animation
 	// return (
 	// 	<div className='feedback-list'>
